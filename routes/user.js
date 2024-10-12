@@ -17,7 +17,7 @@ router.delete("/:id", verifyToken,deleteuser);
 router.get("/find/:id", getSingleuser);
 
 //get all users
-router.get("/",verifyToken, getalleuser); 
+router.get("/", getalleuser); 
 
 //search user
 router.get("/search", verifyToken, Searchuser);

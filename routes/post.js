@@ -16,7 +16,7 @@ router.delete("/delete/:id", verifyToken,deletePost);
 //get single post 
 router.get("/find/:id", verifyToken, getSinglePost);
 // get all post 
-router.get("/allpost", verifyToken, getAllPost);
+router.get("/allpost", getAllPost);
 // like post 
 router.put("/like/:postId", verifyToken, Likes);
 // unlikes 
