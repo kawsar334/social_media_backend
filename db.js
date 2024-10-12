@@ -4,7 +4,8 @@
 const mongoose = require("mongoose");
 
 const connect = () => {
-    mongoose.connect("mongodb://localhost:27017/social_media?directConnection=true")
+
+    mongoose.connect(process.env.MONGO_URI)
         .then(() => {
             console.log("Database connected");
         })
