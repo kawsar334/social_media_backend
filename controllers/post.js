@@ -1,53 +1,48 @@
 
 
-
-const Post = require("../models/Post")
+const Post = require("../models/Post");
 
 const getAllPosts = async (req, res) => {
-
+    
     try {
-
-        const post = await Post.find();
+        const posts = await Post.find(); 
         res.json({
-            message: "Hello World!",
+            message: "Posts retrieved successfully",
             success: true,
-            data: post,
+            data: posts,
         });
-        console.log(post) 
-
+      
     } catch (err) {
-        console.log(err)
-
+        console.error(err);
         res.status(500).json({
             message: "Server Error",
             success: false,
-        });
+        }); 
     }
-
-
-}
-
+};
 
 const getSinglePost = async (req, res) => {
-
     try {
-
-        const post = await Post.findById(req.params.id)
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).json({ 
+                message: "Post not found",
+                success: false,
+            });
+        }
         res.json({
-            message: "Hello World!",
+            message: "Post retrieved successfully",
             success: true,
             data: post,
         });
-        console.log(post)
-
     } catch (err) {
+        console.error(err);
         res.status(500).json({
             message: "Server Error",
             success: false,
-        });
+        });   
     }
+};
 
-
-}
-
-module.exports = {getAllPosts , getSinglePost}
+module.exports = { getAllPosts, getSinglePost };  
+   
