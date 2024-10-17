@@ -3,8 +3,8 @@ require("dotenv").config();
 const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const postRoute = require("./routes/post");
-const authRoute = require("./routes/auth");
+// const postRoute = require("./routes/post");
+// const authRoute = require("./routes/auth");
 
 const connect = require("./db");
 
@@ -16,8 +16,8 @@ app.use(cookieParser());
 app.use(cors());
 
 // Routes
-app.use("/api/post", postRoute);
-app.use("/api/auth", authRoute);
+// app.use("/api/post", postRoute);
+// app.use("/api/auth", authRoute);
 
 
 // Global error handling middleware
