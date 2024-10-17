@@ -4,6 +4,8 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const postRoute = require("./routes/post");
+const authRoute = require("./routes/auth");
+
 const connect = require("./db");
 
 const PORT = process.env.PORT || 5000; 
@@ -15,11 +17,18 @@ app.use(cors());
 
 // Routes
 app.use("/api/post", postRoute);
+app.use("/api/auth", authRoute);
+
 
 // Global error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send("Something broke!");
+    const message = err.message || "SOMETHING WENT WRONG ";
+    const status = err.status || 500;
+   return res.json({
+    message,
+    status,
+    success: false, 
+   })
 });
 
 // Start server after DB connection is established

@@ -17,7 +17,6 @@ const PostSchema = new mongoose.Schema({
     userId:{
         type: String,
         required: true,
-    
     },
     images:{
         type:[String],
@@ -26,10 +25,6 @@ const PostSchema = new mongoose.Schema({
     likes:{
         type:[String],
         default:[]
-    },
-    unlikes:{
-        type: [String],
-        default: []
     },
     comments:{
         type: [String],

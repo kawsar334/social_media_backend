@@ -18,20 +18,39 @@ const userSchema = new mongoose.Schema({
         required: [true, "password is required"],
       
     },
-    cpassword: {
-        type: String,
-        required: [true, "password is required"],
-       
-    },
-    avatar: {
+      avatar: {
         type: String,
         default: ""
+    },
+    city:{
+        type: String,
+        default: "",
+    },
+    country: {
+        type: String,
+        default: "",
+    },
+    phone:{
+        type: String,
+        default: "",
+    },
+    followers:{
+        type: [String],
+        default: []
+    },
+    following:{
+        type: [String],
+        default: []
     },
     notifications: {
         type: [String],
         default: []
     },
     seenNotification: {
+        type: [String],
+        default: []
+    },
+    posts:{
         type: [String],
         default: []
     }

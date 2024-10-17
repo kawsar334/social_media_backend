@@ -2,6 +2,34 @@
 
 const Post = require("../models/Post");
 
+
+// create post 
+const createPost= async()=>{
+    try{
+        const post = new Post({
+          ...req.body ,
+          userId:req.userId
+        });
+        const newPost = await post.save();
+
+        res.status(200).json({
+            message: "Post created successfully",
+            success: true,
+            data: newPost,
+        });
+
+
+    }catch(err){
+        res.json({
+            message: "Error creating post",
+            success: false,
+        })
+        console.log(err);
+    }
+}
+// updated post 
+// delete a post 
+// get all posts
 const getAllPosts = async (req, res) => {
     
     try {
@@ -20,7 +48,7 @@ const getAllPosts = async (req, res) => {
         }); 
     }
 };
-
+// get single post 
 const getSinglePost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
@@ -44,5 +72,7 @@ const getSinglePost = async (req, res) => {
     }
 };
 
-module.exports = { getAllPosts, getSinglePost };  
+
+
+module.exports = { createPost, getAllPosts, getSinglePost };  
    

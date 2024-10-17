@@ -7,10 +7,16 @@ const { getAllPosts, getSinglePost } = require("../controllers/post.js")
 
 
 
-// Add a simple GET request
-router.get("/", getAllPosts);
 
-// Add a simple GET request
+
+
+// create post
+// update post
+// delete post
+// get posts
+// gettimeline posts
+router.get("/allpost", getAllPosts);
+// get single post
 router.get("/find/:id", getSinglePost);
 
 module.exports = router ; 
