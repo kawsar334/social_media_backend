@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const postRoute = require("./routes/post");
 const authRoute = require("./routes/auth");
-
+const userRoute = require("./routes/user");
 const connect = require("./db");
 
 const app = express();
@@ -18,10 +18,11 @@ app.use(cors());
 // Routes
 app.use("/api/post", postRoute);
 app.use("/api/auth", authRoute);
-
+app.use("/api/user", userRoute);
 
 // Global error handling middleware
 app.use((err, req, res, next) => {
+    console.error(err); // Log the error details
     const message = err.message || "SOMETHING WENT WRONG";
     const status = err.status || 500;
     return res.status(status).json({
@@ -31,7 +32,6 @@ app.use((err, req, res, next) => {
     });
 });
 
-// Start server after DB connection is established
 const startServer = async () => {
     try {
         await connect(); // Ensure DB connection
