@@ -34,7 +34,7 @@ const Login = async (req, res, next) => {
         if (!isMatch) {
             return res.status(401).json({ message: "Invalid password", success: false });
         }
-        const token = jwt.sign({ id: user._id }, process.env.SECRET, { expiresIn: '1d' });
+        const token = jwt.sign({ id: user._id }, process.env.SECRETE, { expiresIn: '1d' });
         res.cookie('token', token, {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000 // 1 day

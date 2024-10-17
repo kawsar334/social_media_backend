@@ -32,7 +32,9 @@ app.use((err, req, res, next) => {
     });
 });
 
-const startServer = async () => {
+
+
+const startServer = async () => { 
     try {
         await connect(); // Ensure DB connection
         console.log("Database connected");
