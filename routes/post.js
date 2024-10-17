@@ -9,13 +9,12 @@ const { getAllPosts, getSinglePost } = require("../controllers/post.js")
 
 
 
-
 // create post
 // update post
 // delete post
 // get posts
 // gettimeline posts
-router.get("/allpost", getAllPosts);
+router.get("/posts", getAllPosts);
 // get single post
 router.get("/find/:id", getSinglePost);
 

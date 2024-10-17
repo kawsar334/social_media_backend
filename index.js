@@ -31,6 +31,10 @@ app.use((err, req, res, next) => {
    })
 });
 
+app.get("/home",(req,res)=>{
+    res.send("hellow")
+})
+
 // Start server after DB connection is established
 const startServer = async () => {
     try {
