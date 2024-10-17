@@ -1,14 +1,13 @@
 const express = require("express");
 require("dotenv").config();
-const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-// const postRoute = require("./routes/post");
-// const authRoute = require("./routes/auth");
-
+const postRoute = require("./routes/post");
+const authRoute = require("./routes/auth");
 const connect = require("./db");
 
-const PORT = process.env.PORT || 5000; 
+const app = express();
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
@@ -16,37 +15,34 @@ app.use(cookieParser());
 app.use(cors());
 
 // Routes
-// app.use("/api/post", postRoute);
-// app.use("/api/auth", authRoute);
-
+app.use("/api/post", postRoute);
+app.use("/api/auth", authRoute);
 
 // Global error handling middleware
 app.use((err, req, res, next) => {
-    const message = err.message || "SOMETHING WENT WRONG ";
+    const message = err.message || "SOMETHING WENT WRONG";
     const status = err.status || 500;
-   return res.json({
-    message,
-    status,
-    success: false, 
-   })
+    return res.status(status).json({
+        message,
+        status,
+        success: false,
+    });
 });
-
-app.get("/home",(req,res)=>{
-    res.send("hellow")
-})
 
 // Start server after DB connection is established
 const startServer = async () => {
     try {
-        await connect(); 
+        await connect(); // Ensure DB connection
         console.log("Database connected");
+
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
         });
     } catch (error) {
         console.error("Failed to connect to database:", error);
-        process.exit(1); 
-    }   
-}; 
- 
+        process.exit(1);
+    }
+};
+
+// Invoke the startServer function
 startServer();
