@@ -39,7 +39,7 @@ const Login = async (req, res, next) => {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000 // 1 day
         });
-        console.log(process.env.JWT_SECRET)
+      
         res.status(200).json({ message: "User logged in successfully", success: true, token });
     } catch (err) {
         next(err);
