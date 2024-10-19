@@ -48,83 +48,10 @@ This is the backend API for a social media platform. It handles user authenticat
  CLOUDINARY_API_KEY=your_cloudinary_api_key (if using media upload service).
 
 ## API Endpoints
-
-### Authentication
-- https://social-media-backend-ochre.vercel.app/api/auth/Endpoint
-
-| Method | Endpoint          | Description                     |
-|--------|-------------------|---------------------------------|
-| POST   | `/register`        | Register a new user             |
-| POST   | `/login`           | Login a user                    |
-| POST   | `/auth/logout`     | Logout the current user         |
-
-
 ### User Management
 - https://social-media-backend-ochre.vercel.app/api/user/Endpoint
 
-| Method | Endpoint                       | Description                |
-|--------|---------------------------------|----------------------------|
-| GET    | `user/userLists`                | Get all users              |
-| GET    | `find/:id`                      | Get a user by ID           |
-| PUT    | `:id`                           | Update a user's profile    |
-| PUT    | `updatedpassword/:id`           | Update password            |
-| UPDATE | `updatedprofilepicture/:id`     | Update profile image       |
-| DELETE | `/:id`                          | Delete a user              |
-
-### Posts
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| GET    | `/api/posts`               | Get all posts                   |
-| GET    | `/api/posts/:id`           | Get a post by ID                |
-| POST   | `/api/posts`               | Create a new post               |
-| PUT    | `/api/posts/:id`           | Update a post                   |
-| DELETE | `/api/posts/:id`           | Delete a post                   |
-
-### Comments
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| POST   | `/api/posts/:id/comments`  | Comment on a post               |
-| GET    | `/api/posts/:id/comments`  | Get all comments for a post     |
-| DELETE | `/api/comments/:id`        | Delete a comment                |
-
-### Likes
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| POST   | `/api/posts/:id/like`      | Like a post                     |
-| POST   | `/api/posts/:id/unlike`    | Unlike a post                   |
-
-### Friend Requests
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| POST   | `/api/users/:id/friend-request` | Send a friend request           |
-| POST   | `/api/users/:id/accept-friend`  | Accept a friend request         |
-| POST   | `/api/users/:id/decline-friend` | Decline a friend request        |
-
-### Notifications
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| GET    | `/api/notifications`       | Get all notifications           |
-| PUT    | `/api/notifications/:id`   | Mark notification as read       |
-| DELETE | `/api/notifications/:id`   | Delete a notification           |
-
-### Messages (Optional)
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| GET    | `/api/messages`            | Get all messages                |
-| POST   | `/api/messages`            | Send a message                  |
-| GET    | `/api/messages/:id`        | Get a specific message          |
-| DELETE | `/api/messages/:id`        | Delete a message                |
-
-
-### User Model
-
-The `User` model stores information about the users of the social media platform. Below are the fields and their types:
+#### User Model
 
 | Field          | Type        | Description                                 |
 |----------------|-------------|---------------------------------------------|
@@ -138,9 +65,22 @@ The `User` model stores information about the users of the social media platform
 | `createdAt`    | Date        | Timestamp when the user was created         |
 | `updatedAt`    | Date        | Timestamp when the user was last updated    |
 
-### Post Model
+#### API Endpoints
 
-The `Post` model stores information about the posts created by users:
+| Method | Endpoint                  | Description                             |
+|--------|---------------------------|-----------------------------------------|
+| GET    | `/api/user/userLists`      | Get all users                           |
+| GET    | `/api/user/find/:id`       | Get a user by ID                        |
+| PUT    | `/api/user/:id`            | Update a user's profile                 |
+| PUT    | `/api/user/updatedpassword/:id` | Update a user's password             |
+| PUT    | `/api/user/updatedprofilepicture/:id` | Update a user's profile picture |
+| DELETE | `/api/user/:id`            | Delete a user                           |
+
+
+### Posts Management
+- https://social-media-backend-ochre.vercel.app/api/posts/Endpoint
+
+#### Post Model
 
 | Field          | Type        | Description                                 |
 |----------------|-------------|---------------------------------------------|
@@ -153,9 +93,21 @@ The `Post` model stores information about the posts created by users:
 | `createdAt`    | Date        | Timestamp when the post was created         |
 | `updatedAt`    | Date        | Timestamp when the post was last updated    |
 
-### Comment Model
+#### API Endpoints
 
-The `Comment` model stores information about comments on posts:
+| Method | Endpoint                  | Description                             |
+|--------|---------------------------|-----------------------------------------|
+| GET    | `/api/posts`              | Get all posts                           |
+| GET    | `/api/posts/:id`          | Get a post by ID                        |
+| POST   | `/api/posts`              | Create a new post                       |
+| PUT    | `/api/posts/:id`          | Update a post                           |
+| DELETE | `/api/posts/:id`          | Delete a post                           |
+
+
+### Comments Management
+- https://social-media-backend-ochre.vercel.app/api/comments/Endpoint
+
+#### Comment Model
 
 | Field          | Type        | Description                                 |
 |----------------|-------------|---------------------------------------------|
@@ -165,7 +117,31 @@ The `Comment` model stores information about comments on posts:
 | `content`      | String      | The text of the comment                     |
 | `createdAt`    | Date        | Timestamp when the comment was created      |
 
+#### API Endpoints
 
+| Method | Endpoint                        | Description                             |
+|--------|----------------------------------|-----------------------------------------|
+| POST   | `/api/posts/:id/comments`        | Comment on a post                       |
+| GET    | `/api/posts/:id/comments`        | Get all comments for a post             |
+| DELETE | `/api/comments/:id`              | Delete a comment                        |
+
+### Likes Management
+- https://social-media-backend-ochre.vercel.app/api/likes/Endpoint
+
+#### Like Model
+
+Likes are typically stored as part of the `Post` model:
+
+| Field          | Type        | Description                                 |
+|----------------|-------------|---------------------------------------------|
+| `likes`        | [ObjectId]  | Array of user IDs who liked the post        |
+
+#### API Endpoints
+
+| Method | Endpoint                        | Description                             |
+|--------|----------------------------------|-----------------------------------------|
+| POST   | `/api/posts/:id/like`            | Like a post                             |
+| POST   | `/api/posts/:id/unlike`          | Unlike a post                           |
 
 
 ## Authors
