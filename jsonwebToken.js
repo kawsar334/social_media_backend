@@ -13,13 +13,10 @@ const verifyToken = async (req, res, next) => {
             } else {
                 req.user = user;
                 next();
-
             }
         })
     }
 }
-
-
 
 
 // verify token and admin 
