@@ -4,7 +4,7 @@
 
 This is the backend API for a social media platform. It handles user authentication, post creation, comments, likes, and follows, providing endpoints that allow users to interact with the platform.
 
-
+-  [Frontend Link](https://github.com/kawsar334/tailwind_css-react-_js-social_media_UI-UX_desgn-) 
 -  Project structure : [click here](https://docs.google.com/presentation/d/1TkPNA5qiVmhk8yDfFHUQdej5ipEm5iS9JMwRLax2q_w/edit?usp=sharing)
 
 ### Features
@@ -48,80 +48,100 @@ This is the backend API for a social media platform. It handles user authenticat
  CLOUDINARY_API_KEY=your_cloudinary_api_key (if using media upload service).
 
 ## API Endpoints
-
-### Authentication
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| POST   | `/api/auth/register`       | Register a new user             |
-| POST   | `/api/auth/login`          | Login a user                    |
-| POST   | `/api/auth/logout`         | Logout the current user         |
-| GET    | `/api/auth/me`             | Get the logged-in user's info   |
-
 ### User Management
+- https://social-media-backend-ochre.vercel.app/api/user/Endpoint
 
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| GET    | `/api/users`               | Get all users                   |
-| GET    | `/api/users/:id`           | Get a user by ID                |
-| PUT    | `/api/users/:id`           | Update a user's profile         |
-| DELETE | `/api/users/:id`           | Delete a user                   |
-| POST   | `/api/users/:id/follow`    | Follow a user                   |
-| POST   | `/api/users/:id/unfollow`  | Unfollow a user                 |
+#### User Model
 
-### Posts
+| Field          | Type        | Description                                 |
+|----------------|-------------|---------------------------------------------|
+| `_id`          | ObjectId    | Unique identifier (generated automatically) |
+| `name`         | String      | Full name of the user                       |
+| `email`        | String      | Email address (must be unique)              |
+| `password`     | String      | Hashed password                             |
+| `profilePic`   | String      | URL to the user's profile picture           |
+| `followers`    | [ObjectId]  | Array of user IDs who follow this user      |
+| `following`    | [ObjectId]  | Array of user IDs that this user follows    |
+| `createdAt`    | Date        | Timestamp when the user was created         |
+| `updatedAt`    | Date        | Timestamp when the user was last updated    |
 
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| GET    | `/api/posts`               | Get all posts                   |
-| GET    | `/api/posts/:id`           | Get a post by ID                |
-| POST   | `/api/posts`               | Create a new post               |
-| PUT    | `/api/posts/:id`           | Update a post                   |
-| DELETE | `/api/posts/:id`           | Delete a post                   |
+#### API Endpoints
 
-### Comments
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| POST   | `/api/posts/:id/comments`  | Comment on a post               |
-| GET    | `/api/posts/:id/comments`  | Get all comments for a post     |
-| DELETE | `/api/comments/:id`        | Delete a comment                |
-
-### Likes
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| POST   | `/api/posts/:id/like`      | Like a post                     |
-| POST   | `/api/posts/:id/unlike`    | Unlike a post                   |
-
-### Friend Requests
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| POST   | `/api/users/:id/friend-request` | Send a friend request           |
-| POST   | `/api/users/:id/accept-friend`  | Accept a friend request         |
-| POST   | `/api/users/:id/decline-friend` | Decline a friend request        |
-
-### Notifications
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| GET    | `/api/notifications`       | Get all notifications           |
-| PUT    | `/api/notifications/:id`   | Mark notification as read       |
-| DELETE | `/api/notifications/:id`   | Delete a notification           |
-
-### Messages (Optional)
-
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| GET    | `/api/messages`            | Get all messages                |
-| POST   | `/api/messages`            | Send a message                  |
-| GET    | `/api/messages/:id`        | Get a specific message          |
-| DELETE | `/api/messages/:id`        | Delete a message                |
+| Method | Endpoint                  | Description                             |
+|--------|---------------------------|-----------------------------------------|
+| GET    | `/api/user/userLists`      | Get all users                           |
+| GET    | `/api/user/find/:id`       | Get a user by ID                        |
+| PUT    | `/api/user/:id`            | Update a user's profile                 |
+| PUT    | `/api/user/updatedpassword/:id` | Update a user's password             |
+| PUT    | `/api/user/updatedprofilepicture/:id` | Update a user's profile picture |
+| DELETE | `/api/user/:id`            | Delete a user                           |
 
 
+### Posts Management
+- https://social-media-backend-ochre.vercel.app/api/posts/Endpoint
+
+#### Post Model
+
+| Field          | Type        | Description                                 |
+|----------------|-------------|---------------------------------------------|
+| `_id`          | ObjectId    | Unique identifier (generated automatically) |
+| `userId`       | ObjectId    | ID of the user who created the post         |
+| `content`      | String      | The content of the post                     |
+| `image`        | String      | URL of an image associated with the post    |
+| `likes`        | [ObjectId]  | Array of user IDs who liked the post        |
+| `comments`     | [ObjectId]  | Array of comment IDs associated with the post |
+| `createdAt`    | Date        | Timestamp when the post was created         |
+| `updatedAt`    | Date        | Timestamp when the post was last updated    |
+
+#### API Endpoints
+
+| Method | Endpoint                  | Description                             |
+|--------|---------------------------|-----------------------------------------|
+| GET    | `/api/posts`              | Get all posts                           |
+| GET    | `/api/posts/:id`          | Get a post by ID                        |
+| POST   | `/api/posts`              | Create a new post                       |
+| PUT    | `/api/posts/:id`          | Update a post                           |
+| DELETE | `/api/posts/:id`          | Delete a post                           |
 
 
+### Comments Management
+- https://social-media-backend-ochre.vercel.app/api/comments/Endpoint
+
+#### Comment Model
+
+| Field          | Type        | Description                                 |
+|----------------|-------------|---------------------------------------------|
+| `_id`          | ObjectId    | Unique identifier (generated automatically) |
+| `postId`       | ObjectId    | ID of the post this comment is for          |
+| `userId`       | ObjectId    | ID of the user who made the comment         |
+| `content`      | String      | The text of the comment                     |
+| `createdAt`    | Date        | Timestamp when the comment was created      |
+
+#### API Endpoints
+
+| Method | Endpoint                        | Description                             |
+|--------|----------------------------------|-----------------------------------------|
+| POST   | `/api/posts/:id/comments`        | Comment on a post                       |
+| GET    | `/api/posts/:id/comments`        | Get all comments for a post             |
+| DELETE | `/api/comments/:id`              | Delete a comment                        |
+
+### Likes Management
+- https://social-media-backend-ochre.vercel.app/api/likes/Endpoint
+
+#### Like Model
+
+Likes are typically stored as part of the `Post` model:
+
+| Field          | Type        | Description                                 |
+|----------------|-------------|---------------------------------------------|
+| `likes`        | [ObjectId]  | Array of user IDs who liked the post        |
+
+#### API Endpoints
+
+| Method | Endpoint                        | Description                             |
+|--------|----------------------------------|-----------------------------------------|
+| POST   | `/api/posts/:id/like`            | Like a post                             |
+| POST   | `/api/posts/:id/unlike`          | Unlike a post                           |
 
 
 ## Authors
