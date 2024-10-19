@@ -95,8 +95,8 @@ This is the backend API for a social media platform. It handles user authenticat
 
 
 ## 5. sceema structure .
-
-```
+- User Schema
+```bash
 {
   "username": "String (Required)",
   "email": "String (Required, Unique)",
@@ -116,7 +116,7 @@ This is the backend API for a social media platform. It handles user authenticat
 }
 
 ```
-
+- POST Schema
 ```bash
 {
   "title": "String (Required, MaxLength: 30)",
@@ -130,7 +130,7 @@ This is the backend API for a social media platform. It handles user authenticat
 }
 
 ```
-
+- COMMENT Schema
 ```bash
 {
   "userId": "String (Required)",
@@ -142,8 +142,9 @@ This is the backend API for a social media platform. It handles user authenticat
 
 ```
 
+- story Schema
 ```bash
-## story
+
 {
   "title": "String (Required)",
   "userId": "String (Required)",
