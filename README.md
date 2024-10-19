@@ -43,29 +43,13 @@ This is the backend API for a social media platform. It handles user authenticat
    ```bash
    PORT=5000
    
- MONGO_URI=your_mongo_db_connection_string
- JWT_SECRET=your_jwt_secret_key
- CLOUDINARY_API_KEY=your_cloudinary_api_key (if using media upload service).
+ - MONGO_URI=your_mongo_db_connection_string
+ - JWT_SECRET=your_jwt_secret_key
 
-## API Endpoints
-### User Management
+
+## 4. API Endpoints
+### User API Endpoint
 - https://social-media-backend-ochre.vercel.app/api/user/Endpoint
-
-#### User Model
-
-| Field          | Type        | Description                                 |
-|----------------|-------------|---------------------------------------------|
-| `_id`          | ObjectId    | Unique identifier (generated automatically) |
-| `name`         | String      | Full name of the user                       |
-| `email`        | String      | Email address (must be unique)              |
-| `password`     | String      | Hashed password                             |
-| `profilePic`   | String      | URL to the user's profile picture           |
-| `followers`    | [ObjectId]  | Array of user IDs who follow this user      |
-| `following`    | [ObjectId]  | Array of user IDs that this user follows    |
-| `createdAt`    | Date        | Timestamp when the user was created         |
-| `updatedAt`    | Date        | Timestamp when the user was last updated    |
-
-#### API Endpoints
 
 | Method | Endpoint                  | Description                             |
 |--------|---------------------------|-----------------------------------------|
@@ -77,23 +61,9 @@ This is the backend API for a social media platform. It handles user authenticat
 | DELETE | `/api/user/:id`            | Delete a user                           |
 
 
-### Posts Management
+### Posts API Endpoints
 - https://social-media-backend-ochre.vercel.app/api/posts/Endpoint
 
-#### Post Model
-
-| Field          | Type        | Description                                 |
-|----------------|-------------|---------------------------------------------|
-| `_id`          | ObjectId    | Unique identifier (generated automatically) |
-| `userId`       | ObjectId    | ID of the user who created the post         |
-| `content`      | String      | The content of the post                     |
-| `image`        | String      | URL of an image associated with the post    |
-| `likes`        | [ObjectId]  | Array of user IDs who liked the post        |
-| `comments`     | [ObjectId]  | Array of comment IDs associated with the post |
-| `createdAt`    | Date        | Timestamp when the post was created         |
-| `updatedAt`    | Date        | Timestamp when the post was last updated    |
-
-#### API Endpoints
 
 | Method | Endpoint                  | Description                             |
 |--------|---------------------------|-----------------------------------------|
@@ -104,20 +74,9 @@ This is the backend API for a social media platform. It handles user authenticat
 | DELETE | `/api/posts/:id`          | Delete a post                           |
 
 
-### Comments Management
+### Comments API Endpoints
 - https://social-media-backend-ochre.vercel.app/api/comments/Endpoint
 
-#### Comment Model
-
-| Field          | Type        | Description                                 |
-|----------------|-------------|---------------------------------------------|
-| `_id`          | ObjectId    | Unique identifier (generated automatically) |
-| `postId`       | ObjectId    | ID of the post this comment is for          |
-| `userId`       | ObjectId    | ID of the user who made the comment         |
-| `content`      | String      | The text of the comment                     |
-| `createdAt`    | Date        | Timestamp when the comment was created      |
-
-#### API Endpoints
 
 | Method | Endpoint                        | Description                             |
 |--------|----------------------------------|-----------------------------------------|
@@ -125,23 +84,78 @@ This is the backend API for a social media platform. It handles user authenticat
 | GET    | `/api/posts/:id/comments`        | Get all comments for a post             |
 | DELETE | `/api/comments/:id`              | Delete a comment                        |
 
-### Likes Management
-- https://social-media-backend-ochre.vercel.app/api/likes/Endpoint
 
-#### Like Model
-
-Likes are typically stored as part of the `Post` model:
-
-| Field          | Type        | Description                                 |
-|----------------|-------------|---------------------------------------------|
-| `likes`        | [ObjectId]  | Array of user IDs who liked the post        |
-
-#### API Endpoints
+#### like Endpoints
 
 | Method | Endpoint                        | Description                             |
 |--------|----------------------------------|-----------------------------------------|
 | POST   | `/api/posts/:id/like`            | Like a post                             |
 | POST   | `/api/posts/:id/unlike`          | Unlike a post                           |
+
+
+
+## 5. sceema structure .
+
+```
+{
+  "username": "String (Required)",
+  "email": "String (Required, Unique)",
+  "password": "String (Required)",
+  "avatar": "String (Default: empty string)",
+  "city": "String (Default: empty string)",
+  "country": "String (Default: empty string)",
+  "phone": "String (Default: empty string)",
+  "isAdmin": "Boolean (Default: false)",
+  "followers": ["String (Default: empty array)"],
+  "following": ["String (Default: empty array)"],
+  "notifications": ["String (Default: empty array)"],
+  "seenNotification": ["String (Default: empty array)"],
+  "posts": ["String (Default: empty array)"],
+  "createdAt": "Date (Generated automatically)",
+  "updatedAt": "Date (Generated automatically)"
+}
+
+```
+
+```bash
+{
+  "title": "String (Required, MaxLength: 30)",
+  "desc": "String (Required, MaxLength: 30)",
+  "userId": "String (Required)",
+  "images": ["String (Default: empty array)"],
+  "likes": ["String (Default: empty array)"],
+  "comments": ["String (Default: empty array)"],
+  "createdAt": "Date (Generated automatically)",
+  "updatedAt": "Date (Generated automatically)"
+}
+
+```
+
+```bash
+{
+  "userId": "String (Required)",
+  "postId": "String (Required)",
+  "text": "String (Required)",
+  "createdAt": "Date (Generated automatically)",
+  "updatedAt": "Date (Generated automatically)"
+}
+
+```
+
+```bash
+## story
+{
+  "title": "String (Required)",
+  "userId": "String (Required)",
+  "images": "String (Default: '')",
+  "likes": "[String] (Default: [])",
+  "createdAt": "Date (Generated automatically)",
+  "updatedAt": "Date (Generated automatically)"
+}
+
+```
+
+
 
 
 ## Authors
