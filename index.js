@@ -5,6 +5,8 @@ const cors = require("cors");
 const postRoute = require("./routes/post");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
+const commentRoute = require("./routes/comment");
+
 const connect = require("./db");
 
 const app = express();
@@ -19,6 +21,8 @@ app.use(cors());
 app.use("/api/post", postRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
+app.use("/api/comment", commentRoute);
+
 
 // Global error handling middleware
 app.use((err, req, res, next) => {

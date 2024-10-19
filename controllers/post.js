@@ -121,7 +121,7 @@ const getAllPosts = async (req, res) => {
 
 // get all posts from friends for the news feed
 const getNewsFeedPosts = async (req, res, next) => {
-    const query = req.query.new;
+    // const query = req.query.new;
     try {
         const user = await User.findById(req.user.id).populate('followers');
         if (!user) {

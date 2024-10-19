@@ -3,7 +3,7 @@
 const router = require("express").Router();
 const { getUsers, getUserById, updateUser, deleteUser, updatePassword, updateProfilePicture, Follow, unfollow, getMyFollowers, getMyFollowing, searchUser, suggestFriend } = require("../controllers/user");
 
-const { verifyToken } = require("../jsonwebToken")///req.user.id
+const { verifyToken } = require("../jsonwebToken")///------------req.user.id
 
 
 // get all user list
@@ -24,6 +24,7 @@ router.put("/unfollow/:id", verifyToken, unfollow)
 router.get("/searchfriends", searchUser);
 // DELETE A USER .
 router.delete("/:id", verifyToken, deleteUser);
+// get suggest friends
 router.get("/suggestFriend",verifyToken, suggestFriend);
 
 module.exports = router;

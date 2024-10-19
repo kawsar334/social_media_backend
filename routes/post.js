@@ -6,9 +6,6 @@ const router = express.Router();
 const { createPost, updatePost, deletePost, getAllPosts, getSinglePost, searchPost, getNewsFeedPosts } = require("../controllers/post.js")
 const { verifyToken } = require("../jsonwebToken")///req.user.id
 
-
-
-
 // create post
 router.post("/createpost", verifyToken, createPost);
 // update post
