@@ -122,6 +122,48 @@ This is the backend API for a social media platform. It handles user authenticat
 | DELETE | `/api/messages/:id`        | Delete a message                |
 
 
+### User Model
+
+The `User` model stores information about the users of the social media platform. Below are the fields and their types:
+
+| Field          | Type        | Description                                 |
+|----------------|-------------|---------------------------------------------|
+| `_id`          | ObjectId    | Unique identifier (generated automatically) |
+| `name`         | String      | Full name of the user                       |
+| `email`        | String      | Email address (must be unique)              |
+| `password`     | String      | Hashed password                             |
+| `profilePic`   | String      | URL to the user's profile picture           |
+| `followers`    | [ObjectId]  | Array of user IDs who follow this user      |
+| `following`    | [ObjectId]  | Array of user IDs that this user follows    |
+| `createdAt`    | Date        | Timestamp when the user was created         |
+| `updatedAt`    | Date        | Timestamp when the user was last updated    |
+
+### Post Model
+
+The `Post` model stores information about the posts created by users:
+
+| Field          | Type        | Description                                 |
+|----------------|-------------|---------------------------------------------|
+| `_id`          | ObjectId    | Unique identifier (generated automatically) |
+| `userId`       | ObjectId    | ID of the user who created the post         |
+| `content`      | String      | The content of the post                     |
+| `image`        | String      | URL of an image associated with the post    |
+| `likes`        | [ObjectId]  | Array of user IDs who liked the post        |
+| `comments`     | [ObjectId]  | Array of comment IDs associated with the post |
+| `createdAt`    | Date        | Timestamp when the post was created         |
+| `updatedAt`    | Date        | Timestamp when the post was last updated    |
+
+### Comment Model
+
+The `Comment` model stores information about comments on posts:
+
+| Field          | Type        | Description                                 |
+|----------------|-------------|---------------------------------------------|
+| `_id`          | ObjectId    | Unique identifier (generated automatically) |
+| `postId`       | ObjectId    | ID of the post this comment is for          |
+| `userId`       | ObjectId    | ID of the user who made the comment         |
+| `content`      | String      | The text of the comment                     |
+| `createdAt`    | Date        | Timestamp when the comment was created      |
 
 
 
