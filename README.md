@@ -50,24 +50,24 @@ This is the backend API for a social media platform. It handles user authenticat
 ## API Endpoints
 
 ### Authentication
-
+- https://social-media-backend-ochre.vercel.app/api/auth/Endpoint
 | Method | Endpoint                  | Description                     |
 |--------|---------------------------|---------------------------------|
-| POST   | `/api/auth/register`       | Register a new user             |
-| POST   | `/api/auth/login`          | Login a user                    |
-| POST   | `/api/auth/logout`         | Logout the current user         |
-| GET    | `/api/auth/me`             | Get the logged-in user's info   |
+| POST   | `/register`       | Register a new user             |
+| POST   | `/login`          | Login a user                    |
+| POST   | `/auth/logout`         | Logout the current user         |
 
 ### User Management
+- https://social-media-backend-ochre.vercel.app/api/user/Endpoint
 
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| GET    | `/api/users`               | Get all users                   |
-| GET    | `/api/users/:id`           | Get a user by ID                |
-| PUT    | `/api/users/:id`           | Update a user's profile         |
-| DELETE | `/api/users/:id`           | Delete a user                   |
-| POST   | `/api/users/:id/follow`    | Follow a user                   |
-| POST   | `/api/users/:id/unfollow`  | Unfollow a user                 |
+| Method | Endpoint                       | Description                |
+|--------|---------------------------------|----------------------------|
+| GET    | `user/userLists`                | Get all users              |
+| GET    | `find/:id`                      | Get a user by ID           |
+| PUT    | `:id`                           | Update a user's profile    |
+| PUT    | `updatedpassword/:id`           | Update password            |
+| UPDATE | `updatedprofilepicture/:id`     | Update profile image       |
+| DELETE | `/:id`                          | Delete a user              |
 
 ### Posts
 
