@@ -51,11 +51,13 @@ This is the backend API for a social media platform. It handles user authenticat
 
 ### Authentication
 - https://social-media-backend-ochre.vercel.app/api/auth/Endpoint
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| POST   | `/register`       | Register a new user             |
-| POST   | `/login`          | Login a user                    |
-| POST   | `/auth/logout`         | Logout the current user         |
+
+| Method | Endpoint          | Description                     |
+|--------|-------------------|---------------------------------|
+| POST   | `/register`        | Register a new user             |
+| POST   | `/login`           | Login a user                    |
+| POST   | `/auth/logout`     | Logout the current user         |
+
 
 ### User Management
 - https://social-media-backend-ochre.vercel.app/api/user/Endpoint
