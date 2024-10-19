@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const bcrypt = require("bcryptjs"); // Use bcryptjs
+const bcrypt = require("bcryptjs"); 
 const jwt = require("jsonwebtoken");
 
 // Register user 
@@ -37,7 +37,7 @@ const Login = async (req, res, next) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
         res.cookie('token', token, {
             httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000 // 1 day
+            maxAge: 24 * 60 * 60 * 1000 
         });
       
         res.status(200).json({ message: "User logged in successfully", success: true, token });
@@ -46,4 +46,18 @@ const Login = async (req, res, next) => {
     }
 }
 
-module.exports = { Register, Login };
+
+// logout 
+
+const Logout = async (req, res, next) => {
+    try {
+        res.clearCookie('token');
+        res.status(200).json({ message: "User logged out successfully", success: true });
+    } catch (err) {
+        next(err);
+    }
+}
+
+
+
+module.exports = { Register, Login, Logout };
