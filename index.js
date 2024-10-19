@@ -6,6 +6,8 @@ const postRoute = require("./routes/post");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const commentRoute = require("./routes/comment");
+const storyRoute = require("./routes/story");
+
 
 const connect = require("./db");
 
@@ -22,6 +24,8 @@ app.use("/api/post", postRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/comment", commentRoute);
+app.use("/api/story", storyRoute);
+
 
 
 // Global error handling middleware
