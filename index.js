@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 // app.use(cors());
 app.use(cors({
-    origin: ['https://tailwind-css-react-js-social-media-ui-ux-desgn-qc6e.vercel.app', 'http://localhost:3000'],
+    origin: 'https://tailwind-css-react-js-social-media-ui-ux-desgn-qc6e.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
