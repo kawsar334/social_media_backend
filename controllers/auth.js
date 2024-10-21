@@ -23,12 +23,13 @@ const Register = async (req, res, next) => {
     }
 }
 
-// Login user
+
+
 const Login = async (req, res, next) => {
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
-            console.log("user not found")
+            console.log("user not found");
             return res.status(404).json({ message: "User not found", success: false });
         }
         const isMatch = await bcrypt.compare(req.body.password, user.password);
@@ -38,17 +39,41 @@ const Login = async (req, res, next) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
         res.cookie('token', token, {
             httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000 
-        });      
-        res.status(200).json({ message: "User logged in successfully", success: true, token, id:user._id });
+            maxAge: 24 * 60 * 60 * 1000
+        });
+        res.status(200).json({ message: "User logged in successfully", success: true, token, id: user._id });
     } catch (err) {
         next(err);
     }
 }
 
 
+// // Login user
+// const Login = async (req, res, next) => {
+//     try {
+//         const user = await User.findOne({ email: req.body.email });
+//         if (!user) {
+//             console.log("user not found")
+//             return res.status(404).json({ message: "User not found", success: false });
+//         }
+//         const isMatch = await bcrypt.compare(req.body.password, user.password);
+//         if (!isMatch) {
+//             return res.status(401).json({ message: "Invalid password", success: false });
+//         }
+//         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+//         res.cookie('token', token, {
+//             httpOnly: true,
+//             maxAge: 24 * 60 * 60 * 1000 
+//         });      
+//         res.status(200).json({ message: "User logged in successfully", success: true, token, id:user._id });
+//     } catch (err) {
+//         next(err);
+//     }
+// }
 
-// logout 
+
+
+
 const Logout = async (req, res, next) => {
     try {
         res.clearCookie('token');
