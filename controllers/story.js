@@ -104,4 +104,32 @@ const getAllStories = async (req, res, next) => {
     }
 };
 
-module.exports = { createStory, updateStory, deleteStory, getAllStories, getSingleStory };
+// Likes
+    const likeStory = async (req, res, next) => {
+        try {
+            const story = await Story.findByIdAndUpdate(
+                req.params.id,
+                { $push: { likes: req.user.id } },
+                { new: true }
+            );
+
+            if (!story) {
+                return res.status(404).json({
+                    message: "Story not found or you're not authorized",
+                    success: false,
+                });
+            }
+
+            res.status(200).json({
+                message: "Story liked successfully!",
+                success: true,
+                story,
+            });
+        } catch (err) {
+            next(err);
+        }
+    };
+
+    
+
+module.exports = { createStory, updateStory, deleteStory, getAllStories, getSingleStory, likeStory };

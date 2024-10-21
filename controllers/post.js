@@ -185,5 +185,64 @@ const searchPost = async (req, res, next) => {
     }
 }
 
-module.exports = { createPost, updatePost, deletePost, getAllPosts, getNewsFeedPosts, getSinglePost, searchPost  };  
+// like post
+
+
+const Likes= async(req,res, next)=>{
+    try{
+        const post = await Post.findById(req.params.postId)
+        if (!post) {
+            return res.status(404).json({
+                message: "Post not found",
+                success: false,
+            });
+        }
+        if(!post.likes.includes(req.user.id)){
+            await Post.findByIdAndUpdate(req.params.postId,{$push:{likes:req.user.id}});
+            res.json({
+                message: "Post liked successfully",
+                success: true,
+            });
+        }else{
+            return res.json({
+                message: "You already Liked this post",
+                success: false,
+            });
+        }        
+
+    }catch(err){
+        next(err);
+    }
+}
+  
+// unlike post
+const unLikes = async(req,res,next)=>{
+    try{
+        const post = await Post.findById(req.params.postId);
+        if (!post) {
+            return res.status(404).json({
+                message: "Post not found",
+                success: false,
+            });
+        }
+        if (post.likes.includes(req.user.id)) {
+            await Post.findByIdAndUpdate(req.params.postId, { $pull: { likes: req.user.id } });
+            res.json({
+                message: "Post liked successfully",
+                success: true,
+            });
+        } else {
+            await Post.findByIdAndUpdate(req.params.postId, { $push: { likes: req.user.id } });
+            res.json({
+                message: "Post liked successfully",
+                success: true,
+            });
+        }
+
+    }catch(err){
+        next(err);
+    }
+}
+
+module.exports = { createPost, updatePost, deletePost, getAllPosts, getNewsFeedPosts, getSinglePost, searchPost ,Likes , unLikes};  
    

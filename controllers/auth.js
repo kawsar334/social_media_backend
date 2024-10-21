@@ -28,6 +28,7 @@ const Login = async (req, res, next) => {
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
+            console.log("user not found")
             return res.status(404).json({ message: "User not found", success: false });
         }
         const isMatch = await bcrypt.compare(req.body.password, user.password);
@@ -38,17 +39,16 @@ const Login = async (req, res, next) => {
         res.cookie('token', token, {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000 
-        });
-      
-        res.status(200).json({ message: "User logged in successfully", success: true, token });
+        });      
+        res.status(200).json({ message: "User logged in successfully", success: true, token, id:user._id });
     } catch (err) {
         next(err);
     }
 }
 
 
-// logout 
 
+// logout 
 const Logout = async (req, res, next) => {
     try {
         res.clearCookie('token');

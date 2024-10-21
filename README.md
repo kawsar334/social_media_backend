@@ -30,7 +30,7 @@ This is the backend API for a social media platform. It handles user authenticat
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/social-media-backend.git
+   git clone https://github.com/kawsar334/social_media_backend.git
 
 
 2. **Install dependencies:**
