@@ -17,20 +17,21 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
+
 // app.use(cors({
-//     origin: 'https://tailwind-css-react-js-social-media-ui-ux-desgn-ordc.vercel.app/',
+//     origin: [
+//         'https://tailwind-css-react-js-social-media-ui-ux-desgn-ordc.vercel.app', 
+//         'http://localhost:3000' 
+//     ],
 //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //     credentials: true,
 // }));
-app.use(cors({
-    origin: [
-        'https://tailwind-css-react-js-social-media-ui-ux-desgn-ordc.vercel.app', // Production
-        'http://localhost:3000' // Development
-    ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
-}));
+const corsOptions = {
+    origin: 'https://tailwind-css-react-js-social-media-ui-ux-desgn-ordc.vercel.app', // Replace with your frontend's domain
+    credentials: true 
+};
 
+app.use(cors(corsOptions))
 
 
 // all Routes
