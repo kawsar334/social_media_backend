@@ -28,11 +28,18 @@ app.use(bodyParser());
 //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //     credentials: true,
 // }));
+
+app.options('*', cors({
+    origin: 'https://sprightly-custard-753149.netlify.app',
+    credentials: true,
+}));
+
 app.use(
     cors({
         origin: 'https://sprightly-custard-753149.netlify.app',
         credentials: true,
-    })
+    }
+)
 );
 
 
