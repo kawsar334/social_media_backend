@@ -26,6 +26,7 @@ router.get("/searchfriends", searchUser);
 router.delete("/:id", verifyToken, deleteUser);
 // get suggest friends
 router.get("/suggestFriend",verifyToken, suggestFriend);
+router.get("/getMyFollowers", verifyToken, getMyFollowers)
 
 module.exports = router;
  

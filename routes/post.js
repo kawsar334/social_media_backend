@@ -3,7 +3,7 @@
 
 const express = require("express");
 const router = express.Router();
-const { createPost, updatePost, deletePost, getAllPosts, getSinglePost, searchPost, getNewsFeedPosts, Likes, unLikes } = require("../controllers/post.js")
+const { createPost, updatePost, deletePost, getAllPosts, getSinglePost, timelinePosts, searchPost, getNewsFeedPosts, Likes, unLikes } = require("../controllers/post.js")
 const { verifyToken } = require("../jsonwebToken")///req.user.id
 
 // create post
@@ -21,6 +21,8 @@ router.get("/newsfeedpost", verifyToken, getNewsFeedPosts)
 // get single post
 router.get("/find/:id", getSinglePost);
 // gettimeline posts
+
+router.get("/timlineposts/:id", timelinePosts)
 // search post
 router.get("/search/",searchPost);
 

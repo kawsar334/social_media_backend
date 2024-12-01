@@ -3,7 +3,7 @@ require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-
+const bodyParser = require("body-parser")
 const postRoute = require("./routes/post");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
@@ -11,27 +11,29 @@ const commentRoute = require("./routes/comment");
 const storyRoute = require("./routes/story");
 const connect = require("./db");
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000; 
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser());
+
 app.use(cors());
 
 
-// app.use(cors({
-//     origin: [
-//         'https://tailwind-css-react-js-social-media-ui-ux-desgn-ordc.vercel.app', 
-//         'http://localhost:3000' 
-//     ],
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     credentials: true,
-// }));
+app.use(cors({
+    origin: [
+        'https://tailwind-css-react-js-social-media-ui-ux-desgn-ordc.vercel.app', 
+        'http://localhost:3000' 
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+}));
 const corsOptions = {
-    origin: 'https://tailwind-css-react-js-social-media-ui-ux-desgn-ordc.vercel.app', // Replace with your frontend's domain
+    origin: 'http://localhost:3000' , 
     credentials: true 
 };
 
-app.use(cors(corsOptions))
+app.use(cors())
 
 
 // all Routes
@@ -45,7 +47,6 @@ app.use("/api/story", storyRoute);
 
 // Global error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err); // Log the error details
     const message = err.message || "SOMETHING WENT WRONG";
     const status = err.status || 500;
     return res.status(status).json({

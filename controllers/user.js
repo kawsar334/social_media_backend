@@ -161,7 +161,7 @@ const Follow = async (req, res, next) => {
                 { new: true } 
             );
         } else {
-            return res.status(400).json({
+            return res.status(200).json({
                 message: "You are already following this user",
                 success: false,
             });
@@ -217,17 +217,23 @@ const unfollow = async (req, res, next) => {
 
 const getMyFollowers = async(req, res, next)=>{
     try{
-        const user = await User.findById(req.params.id);
+
+        const user = await User.findById(req.user.id);
         if(!user){
             return res.status(404).json({message:"user not found", success:false})
         }
+        const followers = await User.find({
+            _id: { $in: user.followers },
+        })
+       
         return res.status(200).json({
             message:"followers list",
             success:true,
-            followers:user.followers,
+            followers
                 })
 
     }catch(err){
+        console.log(err)
         next(err);
     }
 }
@@ -300,6 +306,7 @@ const suggestFriend = async (req, res, next) => {
         next(err);
     }
 };
+
 
 
 
