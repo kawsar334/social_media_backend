@@ -22,18 +22,14 @@ app.use(cors());
 
 app.use(cors({
     origin: [
-        'https://tailwind-css-react-js-social-media-ui-ux-desgn-ordc.vercel.app', 
+        'https://sprightly-custard-753149.netlify.app/',
         'http://localhost:3000' 
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
-const corsOptions = {
-    origin: 'http://localhost:3000' , 
-    credentials: true 
-};
 
-app.use(cors())
+
 
 
 // all Routes
