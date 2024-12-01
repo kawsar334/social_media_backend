@@ -17,18 +17,23 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser());
 
-app.use(cors());
+// app.use(cors());
 
 
-app.use(cors({
-    origin: [
-        'https://sprightly-custard-753149.netlify.app/',
-        'http://localhost:3000' 
-    ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
-}));
-
+// app.use(cors({
+//     origin: [
+//         'https://sprightly-custard-753149.netlify.app/',
+//         'http://localhost:3000' 
+//     ],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     credentials: true,
+// }));
+app.use(
+    cors({
+        origin: 'https://sprightly-custard-753149.netlify.app',
+        credentials: true,
+    })
+);
 
 
 
