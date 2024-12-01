@@ -43,6 +43,10 @@ app.use(
 );
 
 
+app.options('/api/auth/login', cors({
+    origin: 'https://sprightly-custard-753149.netlify.app',
+    credentials: true,
+}));
 
 // all Routes
 app.use("/api/auth", authRoute);
